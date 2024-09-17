@@ -1,0 +1,20 @@
+{
+    auto_https off
+    admin off
+}
+
+# app
+:8080 {
+    root * /srv
+    encode zstd gzip
+
+    php_fastcgi unix//var/run/php-fpm.sock
+    file_server
+
+    try_files {path} /index.php
+}
+
+# metrics
+:8090 {
+    metrics /metrics
+}
