@@ -1,5 +1,6 @@
 DOCKER_IMAGE=dockette/adminerevo
 DOCKER_PLATFORM=linux/amd64
+include VERSION
 
 .PHONY: docker-build
 docker-build:
@@ -19,3 +20,12 @@ docker-run:
 		-p 8080:8080 \
 		--name adminer \
 		${DOCKER_IMAGE}
+
+.PHONY: version
+version:
+	@echo ${VERSION}
+
+.PHONY: release
+release:
+	@sed -i.bak "s/^VERSION=.*/VERSION=$$(date -u +%Y.%m.%d)/" VERSION && rm VERSION.bak
+	@cat VERSION
