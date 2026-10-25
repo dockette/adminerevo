@@ -18,29 +18,43 @@
 
 ------
 
+[AdminerEvo](https://docs.adminerevo.org/) is a database management tool in a single PHP file, a fork of Adminer. This
+image runs it with Caddy and PHP-FPM on Alpine.
+
+## Features
+
+- AdminerEvo `4.8.4` on Alpine `3.24` with PHP `8.4` (`session`, `mysqli`, `pgsql`, `json`, `fpm`)
+- Caddy serves the single-file app on port `8080`, `tini` runs as init
+- MySQL, PostgreSQL, SQLite, Mongo and Oracle
+
 ## Usage
 
 ```sh
-docker run \
-    --rm \
-    -p 8080:8080 \
-    dockette/adminerevo
+docker run --rm -p 8080:8080 dockette/adminerevo
 ```
 
 ## Versions
 
-The release version is the date in [`VERSION`](VERSION). The AdminerEvo version is pinned in the `Dockerfile`
-(`ADMINEREVO_VERSION`). On `master`, CI pushes the image under four tags:
-
-| Tag | What it is |
-|-----|------------|
+| Version | Release |
+|---------|---------|
+| `dockette/adminerevo:4.8.4-YYYY.MM.DD` | release `YYYY.MM.DD` |
+| `dockette/adminerevo:4.8.4` | latest release |
+| `dockette/adminerevo:YYYY.MM.DD` | release `YYYY.MM.DD` |
 | `dockette/adminerevo:latest` | latest build of `master` |
-| `dockette/adminerevo:2026.10.23` | release `2026.10.23` |
-| `dockette/adminerevo:4.8.4` | latest build with AdminerEvo `4.8.4` |
-| `dockette/adminerevo:4.8.4-2026.10.23` | AdminerEvo `4.8.4` in release `2026.10.23`; pin this one |
 
-To release, run `make release`, commit and push to `master`. An upstream upgrade is a release too.
+All versions build on AdminerEvo `4.8.4`, pinned in the `Dockerfile` (`ADMINEREVO_VERSION`) and in `VERSION`. Releases
+are listed on [GitHub](https://github.com/dockette/adminerevo/releases).
+
+## Development
+
+```sh
+make docker-build   # build the image
+make docker-run     # run the image on port 8080
+make version        # print VERSION
+make release        # set today's date in VERSION
+```
 
 ## Maintenance
 
-See [how to contribute](https://github.com/dockette/.github/blob/master/CONTRIBUTING.md) to this package. Consider to [support](https://github.com/sponsors/f3l1x) **f3l1x**. Thank you for using this package.
+See [how to contribute](https://github.com/dockette/.github/blob/master/CONTRIBUTING.md) to this package. Consider to
+[support](https://github.com/sponsors/f3l1x) **f3l1x**. Thank you for using this package.
