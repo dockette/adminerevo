@@ -29,8 +29,17 @@ docker run \
 
 ## Versions
 
-The release version is the date in [`VERSION`](VERSION). CI pushes `latest` also as `dockette/adminerevo:<VERSION>`.
-To release, run `make release`, commit and push to `master`.
+The release version is the date in [`VERSION`](VERSION). The AdminerEvo version is pinned in the `Dockerfile`
+(`ADMINEREVO_VERSION`). On `master`, CI pushes the image under four tags:
+
+| Tag | What it is |
+|-----|------------|
+| `dockette/adminerevo:latest` | latest build of `master` |
+| `dockette/adminerevo:2026.10.23` | release `2026.10.23` |
+| `dockette/adminerevo:4.8.4` | latest build with AdminerEvo `4.8.4` |
+| `dockette/adminerevo:4.8.4-2026.10.23` | AdminerEvo `4.8.4` in release `2026.10.23`; pin this one |
+
+To release, run `make release`, commit and push to `master`. An upstream upgrade is a release too.
 
 ## Maintenance
 
