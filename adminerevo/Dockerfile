@@ -2,7 +2,7 @@ FROM alpine:3.24
 
 LABEL maintainer="Milan Sulc <sulcmil@gmail.com>"
 
-ENV ADMINEREVO_VERSION=4.8.4
+ARG ADMINEREVO_VERSION=4.8.4
 
 RUN echo '@community https://dl-cdn.alpinelinux.org/alpine/v3.24/community' >> /etc/apk/repositories && \
     apk --no-cache update && \
